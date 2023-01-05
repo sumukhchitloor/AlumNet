@@ -13,40 +13,23 @@ pipeline {
                 sh 'php --version'
             }
         } 
-          stage('Build') {
-            steps {
-                sh 'php -l *.php'
-            }
+          stage('build') {
+            // Checkout the app at the given commit sha from the webhook
+            checkout scm
+
+            // Install dependencies, create a new .env file and generate a new key, just for testing
+            sh "composer install"
+            sh "cp .env.example .env"
+            sh "php artisan key:generate"
+
+            // Run any static asset building, if needed
+            // sh "npm install && gulp --production"
+        }
+
+        stage('test') {
+            // Run any testing suites
+            sh "./vendor/bin/phpunit"
         }
         
-//         stage('chmod'){
-//             steps{
-//                 sh 'sudo chmod -R 777 / && cd / && mkdir .composer'
-//                 sh 'sudo chmod -R 777 /.composer'
-//             }
-//         }
-        
-        stage('Install Composer') {
-            steps {
-                sh ' curl -sS https://getcomposer.org/installer |  php'
-       
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'php composer.phar install && php composer.phar update'
-            }
-        }
-        
-        stage('Install PHPUnit') {
-            steps {
-                sh 'composer require --dev phpunit/phpunit'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'phpunit .'
-            }
-        }
     }
 }
