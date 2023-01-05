@@ -26,7 +26,7 @@ pipeline {
         
         stage('Install Composer') {
             steps {
-                sh ' composer install'
+                sh ' curl -sS https://getcomposer.org/installer |  php'
        
             }
         }
