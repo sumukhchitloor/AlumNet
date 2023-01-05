@@ -7,12 +7,12 @@ pipeline {
         }
     }
     
-    stages {
+    
         stage('version') {
             steps {
                 sh 'php --version'
             }
-        } 
+        
           stage('build') {
             // Checkout the app at the given commit sha from the webhook
             checkout scm
