@@ -1,13 +1,45 @@
+
+
 pipeline {
     agent {
         docker {
             image 'php:7.4-cli'
         }
     }
+    
     stages {
-        stage('Build') {
+        stage('version') {
+            steps {
+                sh 'php --version'
+            }
+        } 
+          stage('Build') {
             steps {
                 sh 'php -l *.php'
+            }
+        }
+        
+//         stage('chmod'){
+//             steps{
+//                 sh 'sudo chmod -R 777 / && cd / && mkdir .composer'
+//                 sh 'sudo chmod -R 777 /.composer'
+//             }
+//         }
+        
+        stage('Install Composer') {
+            steps {
+                sh ' curl -sS https://getcomposer.org/installer |  php'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'php composer.phar install'
+            }
+        }
+        
+        stage('Install PHPUnit') {
+            steps {
+                sh 'composer require --dev phpunit/phpunit'
             }
         }
         stage('Test') {
