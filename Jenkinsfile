@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'php composer.phar validate'
+                sh 'php composer.phar require'
                 sh 'php composer.phar install && php composer.phar update'
             }
         }
