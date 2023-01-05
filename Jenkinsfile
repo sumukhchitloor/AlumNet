@@ -42,5 +42,25 @@ pipeline {
                 sh 'phpunit .'
             }
         }
+        stage('Build Image') {
+            steps {
+                script {
+                    def registry = 'alumnet/alumnet'
+                    def image = 'myphpapp'
+                    def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
+                    docker.build("${tag}", '.')
+                }
+            }
+        }
+        stage('Push Image') {
+            steps {
+                script {
+                    def registry = 'alumnet/alumnet'
+                    def image = 'myphpapp'
+                    def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
+                    sh "docker push ${tag}"
+                }
+            }
+        }
     }
 }
