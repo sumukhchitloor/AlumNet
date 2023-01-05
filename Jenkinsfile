@@ -1,19 +1,8 @@
+#!/usr/bin/env groovy
 
-
-pipeline {
-    agent {
-        docker {
-            image 'php:7.4-cli'
-        }
-    }
-    
-    
-        stage('version') {
-            steps {
-                sh 'php --version'
-            }
-        
-          stage('build') {
+node('master') {
+    try {
+        stage('build') {
             // Checkout the app at the given commit sha from the webhook
             checkout scm
 
@@ -30,6 +19,16 @@ pipeline {
             // Run any testing suites
             sh "./vendor/bin/phpunit"
         }
-        
+
+        stage('deploy') {
+            // If we had ansible installed on the server, setup to run an ansible playbook
+            // sh "ansible-playbook -i ./ansible/hosts ./ansible/deploy.yml"
+            sh "echo 'WE ARE DEPLOYING'"
+        }
+    } catch(error) {
+        throw error
+    } finally {
+        // Any cleanup operations needed, whether we hit an error or not
     }
+
 }
