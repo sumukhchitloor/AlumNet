@@ -17,13 +17,6 @@ pipeline {
             }
         }
         
-//         stage('chmod'){
-//             steps{
-//                 sh 'sudo chmod -R 777 / && cd / && mkdir .composer'
-//                 sh 'sudo chmod -R 777 /.composer'
-//             }
-//         }
-        
         stage('Install Composer') {
             steps {
                 sh ' curl -sS https://getcomposer.org/installer |  php'
@@ -39,7 +32,7 @@ pipeline {
         
         stage('Install PHPUnit') {
             steps {
-                sh 'php composer require --dev phpunit/phpunit'
+                sh 'composer require --dev phpunit/phpunit'
             }
         }
         stage('Test') {
