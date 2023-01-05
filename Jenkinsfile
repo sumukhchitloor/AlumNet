@@ -2,6 +2,9 @@ pipeline {
     agent {
         docker {
             image 'php:7.4-cli'
+            volumes:
+                - /var/run/docker.sock:/var/run/docker.sock
+
         }
     }
     
