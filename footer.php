@@ -1,4 +1,4 @@
- <style>
+f <style>
    .modal-dialog.large {
     width: 80% !important;
     max-width: unset;
