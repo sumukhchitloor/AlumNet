@@ -32,11 +32,11 @@ pipeline {
        
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh 'php composer.phar install && php composer.phar update'
-            }
-        }
+//         stage('Install Dependencies') {
+//             steps {
+//                 sh 'php composer.phar install && php composer.phar update'
+//             }
+//         }
         
         stage('Install PHPUnit') {
             steps {
