@@ -30,9 +30,11 @@ pipeline {
             }
         }
         
-        stage('Install PHPUnit') {
+         stage('Install PHPUnit') {
             steps {
-                sh 'composer require --dev phpunit/phpunit'
+                sh 'curl -L https://phar.phpunit.de/phpunit.phar > phpunit.phar'
+                sh 'chmod +x phpunit.phar'
+                sh 'mv phpunit.phar /usr/local/bin/phpunit'
             }
         }
         stage('Test') {
