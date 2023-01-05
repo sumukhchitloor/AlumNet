@@ -42,6 +42,13 @@ pipeline {
                 sh 'phpunit .'
             }
         }
+        
+        stage('Docker install') {
+            steps {
+                sh 'apt-get install docker .'
+            }
+        }
+        
         stage('Build Image') {
             steps {
                 script {
