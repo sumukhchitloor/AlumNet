@@ -39,7 +39,7 @@ pipeline {
         
         stage('Install PHPUnit') {
             steps {
-                sh 'composer require --dev phpunit/phpunit'
+                sh 'php composer require --dev phpunit/phpunit'
             }
         }
         stage('Test') {
