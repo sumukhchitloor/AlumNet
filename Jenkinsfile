@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'php composer.phar install'
+                sh 'php composer.phar install && php composer.phar update'
             }
         }
         
