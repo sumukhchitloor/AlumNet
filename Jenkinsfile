@@ -29,7 +29,7 @@ pipeline {
         stage('Install Composer') {
             steps {
                 sh ' curl -sS https://getcomposer.org/installer |  php'
-                sh 'composer update --lock'
+       
             }
         }
         stage('Install Dependencies') {
