@@ -54,26 +54,38 @@ pipeline {
   && rm -r docker docker-17.04.0-ce.tgz'
             }
         }
+        stage('Deploy to Docker Hub') {
+            steps {
+                // Build the Docker image for your PHP website
+                sh 'docker build -t my-php-website .'
+
+                // Tag the Docker image with the Docker Hub repository name
+                sh 'docker tag my-php-website alumnet/alumnet:latest'
+
+                // Push the Docker image to Docker Hub
+                sh 'docker push alumnet/alumnet:latest'
+            }
+        }
         
-        stage('Build Image') {
-            steps {
-                script {
-                    def registry = 'alumnet/alumnet'
-                    def image = 'myphpapp'
-                    def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
-                    docker.build("${tag}", '.')
-                }
-            }
-        }
-        stage('Push Image') {
-            steps {
-                script {
-                    def registry = 'alumnet/alumnet'
-                    def image = 'myphpapp'
-                    def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
-                    sh "docker push ${tag}"
-                }
-            }
-        }
+//         stage('Build Image') {
+//             steps {
+//                 script {
+//                     def registry = 'alumnet/alumnet'
+//                     def image = 'myphpapp'
+//                     def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
+//                     docker.build("${tag}", '.')
+//                 }
+//             }
+//         }
+//         stage('Push Image') {
+//             steps {
+//                 script {
+//                     def registry = 'alumnet/alumnet'
+//                     def image = 'myphpapp'
+//                     def tag = "${registry}/${image}:${env.BUILD_NUMBER}"
+//                     sh "docker push ${tag}"
+//                 }
+//             }
+//         }
     }
 }
