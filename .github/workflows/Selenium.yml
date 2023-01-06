@@ -22,4 +22,4 @@ jobs:
           pip3 install selenium
       - name: Run tests
         run: |
-          python3 fnal_selenium.py
+          python3 final_selenium.py
