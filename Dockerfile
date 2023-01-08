@@ -1,13 +1,13 @@
 # Use the official PHP image as the base image
 FROM php:7.4-apache
 
-# Install the MySQLi extension and the PDO MySQL driver
+# Install the necessary packages for building PHP extensions
 RUN apt-get update && apt-get install -y \
-  php-mysqli \
-  php-pdo-mysql
+  libmysqlclient-dev \
+  make
 
-# Enable the MySQLi extension and the PDO MySQL driver
-RUN docker-php-ext-enable mysqli pdo_mysql
+# Compile and install the MySQLi extension
+RUN docker-php-ext-install mysqli
 
 # Copy the website files to the Apache document root
 COPY . /var/www/html/
@@ -21,6 +21,7 @@ EXPOSE 80
 
 # Start the Apache web server when the container is run
 CMD ["apache2-foreground"]
+
 
 # FROM php:7.4-apache
 
