@@ -12,6 +12,11 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+#install php-mysql
+RUN apt-get update && apt-get install -y php-mysqli
+RUN docker-php-ext-enable mysqli
+
+
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j$(nproc) \
