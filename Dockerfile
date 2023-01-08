@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod rewrite
 
 #install php-mysql
-RUN apt-get update && apt-get install -y mysql-client
+RUN apt-get update && apt-get install -y git curl libmcrypt-dev default-mysql-client
 RUN docker-php-ext-enable mysqli
 
 
