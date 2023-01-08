@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.2.18-apache
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod rewrite
 
 #install php-mysql
-RUN apt-get update && apt-get install -y php-mysqli
+RUN apt-get update && apt-get install -y mysql-client
 RUN docker-php-ext-enable mysqli
 
 
