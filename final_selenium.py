@@ -8,10 +8,16 @@ from selenium.webdriver.common.keys import Keys
 import string
 import random
 
+service = ChromeService(executable_path="/snap/bin/chromium.chromedriver")
+options = webdriver.ChromeOptions()
+options.headless = True
+
+driver=webdriver.Chrome(service=service, options=options)
 
 
-serv_obj=Service("C:\Drivers\chromedriver_win32/chromedriver")
-driver = webdriver.Chrome(service=serv_obj)
+
+# serv_obj=Service("C:\Drivers\chromedriver_win32/chromedriver")
+# driver = webdriver.Chrome(service=serv_obj)
 driver.get("http://localhost/alumni")
 driver.implicitly_wait(20)
 driver.find_element(By.XPATH,"//*[@id='login']").click()
