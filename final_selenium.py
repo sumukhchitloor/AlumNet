@@ -1,14 +1,14 @@
 import time
 #import element as element
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import string
 import random
 
-service = Service(executable_path="/snap/bin/chromium.chromedriver")
+service = ChromeService(executable_path="/snap/bin/chromium.chromedriver")
 options = webdriver.ChromeOptions()
 options.headless = True
 
@@ -18,7 +18,18 @@ driver=webdriver.Chrome(service=service, options=options)
 
 # serv_obj=Service("C:\Drivers\chromedriver_win32/chromedriver")
 # driver = webdriver.Chrome(service=serv_obj)
-driver.get("http://localhost/alumni")
+# driver.get("http://localhost/alumni")
+
+driver.get("https://www.selenium.dev/")
+# Print page name
+print(driver.title)
+
+# Print information about the chromedriver
+print(f"{driver.service.path=}")
+
+driver.quit()
+
+
 driver.implicitly_wait(20)
 driver.find_element(By.XPATH,"//*[@id='login']").click()
 time.sleep(2)
