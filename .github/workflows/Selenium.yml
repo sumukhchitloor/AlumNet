@@ -1,25 +1,58 @@
-name: Run Selenium tests
+name: "Selenium Integration"
 
 on:
   push:
     branches:
-      - master
+       - '*'
+  pull_request:
+    branches:
+      - '*'
+    types: [opened, synchronize, edited]
 
 jobs:
-  test:
+  SeleniumJob:
     runs-on: ubuntu-latest
-    services:
-      selenium:
-        image: selenium/standalone-chrome:latest
-        ports:
-          - 4444:4444
+    defaults:
+      run:
+        working-directory: Frontend
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout to the repository
+        uses: actions/checkout@v2
+      - name: Set up Python 
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip
-          pip3 install selenium
-      - name: Run tests
-        run: |
-          python3 test.py
+         python -m pip install --upgrade pip
+         pip install flake8 pytest
+         pip install selenium
+         pip install Service
+         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run Selenium script
+        run:  python final_selenium.py
+# name: Run Selenium tests
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     services:
+#       selenium:
+#         image: selenium/standalone-chrome:latest
+#         ports:
+#           - 4444:4444
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Install dependencies
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y python3 python3-pip
+#           pip3 install selenium
+#       - name: Run tests
+#         run: |
+#           python3 test.py
