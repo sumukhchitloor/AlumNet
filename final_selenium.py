@@ -20,7 +20,7 @@ driver=webdriver.Chrome(service=service, options=options)
 # driver = webdriver.Chrome(service=serv_obj)
 # driver.get("http://localhost/alumni")
 
-driver.get("https://639d-2406-7400-73-ccc7-4a7-90bc-6db2-3b32.in.ngrok.io")
+driver.get("https://alumnett.000webhostapp.com/")
 # Print page name
 print(driver.title)
 
