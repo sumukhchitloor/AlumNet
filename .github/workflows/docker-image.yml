@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: alumnet/alumnet
-          tags: latest
+          tags: v3
 # name: Build and Push
 
 # on: [push]
