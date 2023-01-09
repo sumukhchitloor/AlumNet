@@ -12,9 +12,6 @@ on:
 jobs:
   SeleniumJob:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Frontend
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v2
