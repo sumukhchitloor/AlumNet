@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 import string
 import random
 
-service = ChromeService(executable_path="/snap/bin/chromium.chromedriver")
+service = Service(executable_path="/snap/bin/chromium.chromedriver")
 options = webdriver.ChromeOptions()
 options.headless = True
 
