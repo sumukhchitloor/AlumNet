@@ -27,7 +27,7 @@ jobs:
          pip install Service
          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run Selenium script
-        run:  python final_selenium.py
+        run:  python finall_selenium.py
 # name: Run Selenium tests
 
 # on:
