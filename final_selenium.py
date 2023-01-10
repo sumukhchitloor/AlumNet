@@ -9,7 +9,7 @@ import string
 import random
 
 service = ChromeService(executable_path="/snap/bin/chromium.chromedriver")
-options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
 options.headless = True
 
 driver=webdriver.Chrome(service=service, options=options)
@@ -35,7 +35,8 @@ driver.find_element(By.XPATH,"//*[@id='login']").click()
 time.sleep(2)
 driver.find_element(By.XPATH,"//*[@id='new_account']").click()
 time.sleep(1)
-
+print("login test passed")
+print("email:varuns@gmail.com   password:varun)
 def generate_random_name():
   names = ['Vyas', 'Lad', 'Chitloor', 'Parida', 'Fadill', 'Maniyar', 'Khan', 'Maguire']
   return random.choice(names)
@@ -66,7 +67,7 @@ drp = Select(ele)
 drp.select_by_visible_text("Female")
 time.sleep(1)
 
-
+print("Create account test passed")
 ab = driver.find_element(By.XPATH,"//*[@id='create_account']/div[2]/div[2]/input")
 driver.execute_script("arguments[0].value = '2022';", ab)
 time.sleep(1)
@@ -129,6 +130,8 @@ driver.execute_script("window.scrollBy(0, arguments[0])", pixels)
 time.sleep(3)
 driver.find_element(By.XPATH,"//*[@id='page-top']/div[2]/div[3]/div[2]/div/div/button").click()
 time.sleep(1)
+print("Participate in event test case passed")      
+   
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[1]/a").click()
 time.sleep(2)
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[2]/a").click()
@@ -139,6 +142,7 @@ driver.find_element(By.XPATH,"//*[@id='filter']").send_keys("Rujuta")
 time.sleep(1)
 driver.find_element(By.XPATH,"//*[@id='search']").click()
 time.sleep(2)
+print("search for alumni test case passed")
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[3]/a").click()
 time.sleep(2)
 pixels = 1600
@@ -146,6 +150,7 @@ driver.execute_script("window.scrollBy(0, arguments[0])", pixels)
 time.sleep(3)
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[4]/a").click()
 time.sleep(1)
+
 
 
 driver.find_element(By.XPATH,"//*[@id='filter']").click()
@@ -159,6 +164,7 @@ driver.execute_script("window.scrollBy(0, arguments[0])", pixels)
 time.sleep(2)
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[4]/a").click()
 time.sleep(2)
+print("search for job test case passed")
 
 driver.find_element(By.XPATH,"//*[@id='new_career']").click()
 time.sleep(1)
@@ -180,6 +186,7 @@ driver.find_element(By.XPATH,"//*[@id='manage-career']/div[4]/div/div/div[3]").s
 time.sleep(2)
 driver.find_element(By.XPATH,"//*[@id='submit']").click()
 time.sleep(5)
+print("create a new job test case passed")
 
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[5]/a").click()
 time.sleep(2)
@@ -193,6 +200,7 @@ pixels = 100
 driver.execute_script("window.scrollBy(0, arguments[0])", pixels)
 time.sleep(2)
 driver.find_element(By.XPATH,"//*[@id='page-top']/div[2]/div[6]/div/div/div/button").click()
+print("search for forum test case passed")
 
 time.sleep(3)
 pixels = 700
@@ -202,6 +210,7 @@ driver.find_element(By.XPATH,"//*[@id='manage-comment']/div/div/div[3]").click()
 time.sleep(1)
 driver.find_element(By.XPATH,"//*[@id='manage-comment']/div/div/div[3]").send_keys("Amazing!")
 time.sleep(2)
+print("type a comment test case passed")
 driver.find_element(By.XPATH,"//*[@id='manage-comment']/button").click()
 time.sleep(4)
 driver.find_element(By.XPATH,"//*[@id='navbarResponsive']/ul/li[5]/a").click()
@@ -212,6 +221,7 @@ driver.find_element(By.XPATH,"//*[@id='manage-forum']/div[1]/div/input").click()
 time.sleep(1)
 driver.find_element(By.XPATH,"//*[@id='manage-forum']/div[1]/div/input").send_keys("ML on the rise")
 time.sleep(1)
+print("create a new forum test case passed")
 
 driver.find_element(By.XPATH,"//*[@id='manage-forum']/div[2]/div/div/div[3]").click()
 time.sleep(1)
