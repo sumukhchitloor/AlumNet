@@ -2,7 +2,7 @@ import time
 time.sleep(3)
 print("login test passed")
 time.sleep(1)
-print("email:varuns@gmail.com   password:varun)
+print("email:varuns@gmail.com   password:varun")
 time.sleep(6)
 print("Create account test passed")
 time.sleep(5)
